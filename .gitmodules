@@ -1,0 +1,3 @@
+[submodule "pyShot"]
+	path = pyShot
+	url = git@github.com:sysophost/pyShot.git
