@@ -15,6 +15,12 @@ URL of the remote host to capture
 
 *Ports can be specified in the typical manner `protocol://host:port`*
 
+`--inputfile` / `-if`
+
+Path to input file containing URLs
+
+One line per URL in the format `protocol://host[:port]`
+
 `--proxy` /  `-p`
 
 Proxy to use for outgoing connections
@@ -27,6 +33,8 @@ This currently supports `HTTP` and `SOCKS4/5`
 `python capio.py --url 'https://something.com' --url 'http://something.else.com'`
 
 `python capio.py --url 'https://something.com' --url 'http://something.else.com:8080'`
+
+`python capio.py --inputfile /path/to/url/file`
 
 ### Using Proxies
 #### HTTP Proxy
