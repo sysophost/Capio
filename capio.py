@@ -9,7 +9,7 @@ from pyShot import pyShot
 
 PARSER = argparse.ArgumentParser()
 PARSER.add_argument('--proxy', '-p', type=str, help='Proxy to use for outbound connections e.g. http://127.0.0.1:8080')
-PARSER.add_argument('--urls', '-u', type=str, required=True, action='append', help='Remote URL to screenshot with optional port. This can be specified multiple times')
+PARSER.add_argument('--url', '-u', type=str, required=True, action='append', help='Remote URL to screenshot with optional port. This can be specified multiple times')
 
 ARGS = PARSER.parse_args()
 
