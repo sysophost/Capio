@@ -30,4 +30,4 @@ if __name__ == '__main__':
     s = pyShot.pyShot(ARGS.proxy)
     loop = asyncio.get_event_loop()
     browser = loop.run_until_complete(s.get_browser())
-    loop.run_until_complete(capture(browser, ARGS.urls))
+    loop.run_until_complete(capture(browser, ARGS.url))
