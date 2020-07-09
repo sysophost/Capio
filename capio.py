@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import logging
+import os
 import sys
 
 import pyppeteer
@@ -11,6 +12,7 @@ PARSER = argparse.ArgumentParser()
 PARSER.add_argument('--proxy', '-p', type=str, help='Proxy to use for outbound connections e.g. http://127.0.0.1:8080')
 PARSER.add_argument('--url', '-u', type=str, action='append', help='Remote URL to screenshot with optional port. This can be specified multiple times')
 PARSER.add_argument('--inputfile', '-if', type=str, help='Path to input file, one line per URL in the format protocol://host[:port]')
+PARSER.add_argument('--outputdir', '-o', type=str, help='Path to output directory for screenshots')
 
 ARGS = PARSER.parse_args()
 
@@ -31,7 +33,7 @@ async def capture(s: pyShot, browser: pyppeteer.browser, urls: list):
 
 
 def main():
-    s = pyShot.pyShot(ARGS.proxy)
+    s = pyShot.pyShot(ARGS.proxy, ARGS.outputdir)
     loop = asyncio.get_event_loop()
     browser = loop.run_until_complete(s.get_browser())
 
@@ -43,10 +45,18 @@ def main():
                 logging.info(f'[i] Found {len(urls)} url(s) in {ARGS.inputfile}')
 
         except (OSError, IOError) as err:
-            logging.error(f'[!] Input file{ARGS.inputfile} not found')
+            logging.error(f'[!] Input file {ARGS.inputfile} not found')
             sys.exit(1)
     else:
         urls = ARGS.url
+
+    if ARGS.outputdir:
+        try:
+            if not os.path.isdir(ARGS.outputdir):
+                os.mkdir(ARGS.outputdir)
+        except Exception:
+            logging.error(f'[!] Something failed when creating the folder {ARGS.outputdir}')
+            sys.exit(1)
 
     loop.run_until_complete(capture(s, browser, urls))
 
