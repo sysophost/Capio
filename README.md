@@ -21,6 +21,12 @@ Path to input file containing URLs
 
 One line per URL in the format `protocol://host[:port]`
 
+`--outputdir` / `-od`
+
+Output directory for screenshots 
+
+*If this doesn't exist it will be created*
+
 `--proxy` /  `-p`
 
 Proxy to use for outgoing connections
