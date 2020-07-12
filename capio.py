@@ -12,7 +12,7 @@ PARSER = argparse.ArgumentParser()
 PARSER.add_argument('--proxy', '-p', type=str, help='Proxy to use for outbound connections e.g. http://127.0.0.1:8080')
 PARSER.add_argument('--url', '-u', type=str, action='append', help='Remote URL to screenshot with optional port. This can be specified multiple times')
 PARSER.add_argument('--inputfile', '-if', type=str, help='Path to input file, one line per URL in the format protocol://host[:port]')
-PARSER.add_argument('--outputdir', '-od', type=str, help='Path to output directory for screenshots')
+PARSER.add_argument('--outputdir', '-od', type=str, default=f"{os.getcwd()}", help="Path to output directory for screenshots (default: %(default)s)")
 
 ARGS = PARSER.parse_args()
 
