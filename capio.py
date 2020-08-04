@@ -59,6 +59,7 @@ def main():
             sys.exit(1)
 
     loop.run_until_complete(capture(s, browser, urls))
+    loop.close()
 
 
 if __name__ == '__main__':
